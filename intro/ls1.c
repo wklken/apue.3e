@@ -7,26 +7,26 @@
 int
 main(int argc, char *argv[])
 {
-	DIR				*dp;
-	struct dirent	*dirp;
+    DIR                *dp;
+    struct dirent    *dirp;
 
     // 需要至少一个参数
-	if (argc != 2)
+    if (argc != 2)
         // apue.h自定义函数
-		err_quit("usage: ls directory_name");
+        err_quit("usage: ls directory_name");
 
     // 赋值后判断, opendir返回指向 DIR 结构体的指针
-	if ((dp = opendir(argv[1])) == NULL)
+    if ((dp = opendir(argv[1])) == NULL)
         // apue.h自定义函数err_sys
-		err_sys("can't open %s", argv[1]);
+        err_sys("can't open %s", argv[1]);
 
     // 赋值后判断, 读每一项, 返回指向readdir结构的指针或null(没有目录项可读时)
-	while ((dirp = readdir(dp)) != NULL)
+    while ((dirp = readdir(dp)) != NULL)
         // 取出每个目录的名字
-		printf("%s\n", dirp->d_name);
+        printf("%s\n", dirp->d_name);
 
-	closedir(dp);
+    closedir(dp);
 
     // 终止程序, 0正常结束, 1-255出错
-	exit(0);
+    exit(0);
 }

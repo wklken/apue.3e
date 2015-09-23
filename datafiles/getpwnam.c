@@ -10,7 +10,7 @@ getpwnam(const char *name)
     setpwent();
     while ((ptr = getpwent()) != NULL)
         if (strcmp(name, ptr->pw_name) == 0)
-            break;		/* found a match */
+            break;        /* found a match */
     endpwent();
-    return(ptr);	/* ptr is NULL if no match found */
+    return(ptr);    /* ptr is NULL if no match found */
 }
