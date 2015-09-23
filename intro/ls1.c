@@ -8,6 +8,7 @@ int
 main(int argc, char *argv[])
 {
     DIR                *dp;
+    // 结构体
     struct dirent    *dirp;
 
     // 需要至少一个参数
