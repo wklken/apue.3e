@@ -1,6 +1,7 @@
 #include "apue.h"
 #include <sys/wait.h>
 
+/* 声明信号处理函数 */
 static void    sig_int(int);        /* our signal-catching function */
 
 int
@@ -10,6 +11,9 @@ main(void)
     pid_t    pid;
     int        status;
 
+
+    /* signal函数, 指定SIGINT 到处理函数 sig_int */
+    /* 机制, 类似于直接注册到了进程, 观察是否异常发生后捕获处理 */
     if (signal(SIGINT, sig_int) == SIG_ERR)
         err_sys("signal error");
 
@@ -34,6 +38,8 @@ main(void)
     exit(0);
 }
 
+
+/* 处理函数, 打印 */
 void
 sig_int(int signo)
 {
