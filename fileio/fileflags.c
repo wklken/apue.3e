@@ -4,7 +4,7 @@
 int
 main(int argc, char *argv[])
 {
-    int        val;
+    int  val;
 
     if (argc != 2)
         err_quit("usage: a.out <descriptor#>");
@@ -12,6 +12,8 @@ main(int argc, char *argv[])
     if ((val = fcntl(atoi(argv[1]), F_GETFL, 0)) < 0)
         err_sys("fcntl error for fd %d", atoi(argv[1]));
 
+    /* O_RDONLY/O_WRONLY/O_RDWR 三者互斥 */
+    /* 分别为0/1/2, 需要用屏蔽字O_ACCMODE取得访问模式位 */
     switch (val & O_ACCMODE) {
     case O_RDONLY:
         printf("read only");
